@@ -1,4 +1,5 @@
 default_http_src: "http://http://168.1.95.188/frank/"
-default_temp_dir: "{{ ((local_datastores|d({'def': ansible_hostname + '-sys'})) | dictsort | first)[1] }}"
+#default_temp_dir: "{{ ((local_datastores|d({'def': ansible_hostname + '-sys'})) | dictsort | first)[1] }}"
+default_temp_dir: "{{ ((datastore1|d({'def': ansible_hostname + '-sys'})) | dictsort | first)[1] }}"
 
 force_reboot: false
