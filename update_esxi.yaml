@@ -93,7 +93,7 @@
     - name: list profiles in bundle
       shell: "esxcli software sources profile list -d {{ temp_path }}/{{ bundle }} | awk 'NR>2 {print $1}'"
       register: profile_res
-      split-out= {{ profile_res.stdout.split('\n')[:-1] }}
+      split-out: {{ profile_res.stdout.split('\n')[:-1] }}
     - debug:
         var: split-out
     #  failed_when: profile_res.stdout_lines | count != 1
