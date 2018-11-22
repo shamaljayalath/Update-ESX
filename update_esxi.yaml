@@ -93,8 +93,7 @@
     - name: list profiles in bundle
       shell: "esxcli software sources profile list -d {{ temp_path }}/{{ bundle }} | awk 'NR>2 {print $1}'"
       register: profile_res
-     # var_out: "{{ profile_res.stdout.split('\n') [0] }}"
-      var1: "{{ profile_res.stdout.split('\n') [0] }}"
+    # var_out: "{{ profile_res.stdout.split('\n') [0] }}"
     - debug:
         var: "{{ profile_res.stdout.split('\n') [0] }}"
     #  failed_when: profile_res.stdout_lines | count != 1
@@ -103,8 +102,7 @@
     - name: dry-run software install
       shell: >
         esxcli --formatter=keyvalue software profile update
-      # -p "{{ profile_res.stdout.split('\n') [0] }}"
-        -p {{ var1 }}
+        -p {{ profile_res.stdout.split('\n') [0] }}
         -d {{ temp_path }}/{{bundle }}
         --dry-run
       register: update_test_res
@@ -117,7 +115,7 @@
     - name: perform install if required
       shell: >
         esxcli --formatter=keyvalue software profile update
-      # -p {{ "{{ profile_res.stdout.split('\n') [0] }}" }}
+        -p {{ profile_res.stdout.split('\n') [0] }}
         -p {{ var1 }}
         -d {{ temp_path }}/{{bundle }}
       register: update_res
