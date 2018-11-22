@@ -95,14 +95,14 @@
       register: profile_res
      # var_out: "{{ profile_res.stdout.split('\n') [0] }}"
     - debug:
-        var: "{{ profile_res.stdout.split('\n') [0] }}"
+        split_out: "{{ profile_res.stdout.split('\n') [0] }}"
     #  failed_when: profile_res.stdout_lines | count != 1
     #  changed_when: false
 
     - name: dry-run software install
       shell: >
         esxcli --formatter=keyvalue software profile update
-        -p {{ var }}
+        -p {{ split_out.stdout }}
         -d {{ temp_path }}/{{bundle }}
         --dry-run
       register: update_test_res
