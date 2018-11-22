@@ -102,7 +102,7 @@
     - name: dry-run software install
       shell: >
         esxcli --formatter=keyvalue software profile update
-       # -p "{{ profile_res.stdout.split('\n') [0] }}"
+      # -p "{{ profile_res.stdout.split('\n') [0] }}"
         -p {{ var }}
         -d {{ temp_path }}/{{bundle }}
         --dry-run
@@ -116,7 +116,7 @@
     - name: perform install if required
       shell: >
         esxcli --formatter=keyvalue software profile update
-        # -p {{ "{{ profile_res.stdout.split('\n') [0] }}" }}
+      # -p {{ "{{ profile_res.stdout.split('\n') [0] }}" }}
         -p {{ var }}
         -d {{ temp_path }}/{{bundle }}
       register: update_res
