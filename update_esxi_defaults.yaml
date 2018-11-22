@@ -1,4 +1,4 @@
-default_http_src: "http://10.118.77.87/frank/"
+default_http_src: "http://10.118.77.96/bundle/"
 default_temp_dir: "{{ ((local_datastores|d({'def': ansible_hostname + '-sys'})) | dictsort | first)[1] }}"
 #default_temp_dir: "{{ ((datastore1|d({'def': ansible_hostname + '-sys'})) | dictsort | first)[1] }}"
 force_reboot: false
