@@ -30,7 +30,7 @@
   # mostly from defaults (included later, but its ok)
   vars:
     bundle_url: "{{ src | default(default_http_src) }}/{{ bundle }}"
-    temp_path:  "{{ '/vmfs/volumes/datastore1' + temp_dir|default(default_temp_dir) }}"
+    temp_path:  "{{ '/vmfs/volumes/datastore1/' + temp_dir|default(default_temp_dir) }}"
 
   tasks:
 
