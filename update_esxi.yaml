@@ -102,12 +102,12 @@
     - name: dry-run software install
     - debug:
         var: "{{ profile_res.stdout.split('\n') [0] }}"
-      shell: >
-        esxcli --formatter=keyvalue software profile update
+    #  shell: >
+    #    esxcli --formatter=keyvalue software profile update
     #   -p {{ profile_res.stdout.split('\n')[0] }}
     #   -p {{ var_1 }}
     #   -d {{ temp_path }}/{{bundle }}
-        --dry-run
+    #    --dry-run
       register: update_test_res
       changed_when: >-
         not (update_test_res.stdout_lines[0].endswith('The following installers will be applied: []')
