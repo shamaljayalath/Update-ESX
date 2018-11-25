@@ -103,7 +103,7 @@
       shell: >
         esxcli --formatter=keyvalue software profile update
     #   -p {{ profile_res.stdout.split('\n') [0] }}
-        -p {{ default_profile }}
+        -p "{{ default_profile }}"
         -d {{ temp_path }}/{{bundle }}
         --dry-run
       register: update_test_res
