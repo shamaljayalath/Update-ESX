@@ -106,7 +106,7 @@
         esxcli --formatter=keyvalue software profile update
     #   -p {{ profile_res.stdout.split('\n')[0] }}
     #   -p {{ var_1 }}
-        -d {{ temp_path }}/{{bundle }}
+    #   -d {{ temp_path }}/{{bundle }}
         --dry-run
       register: update_test_res
       changed_when: >-
