@@ -95,7 +95,7 @@
       register: profile_res
     - debug:
         #var: "{{ profile_res.stdout.split('\n') [0] }}"
-        var: "ESXi-6.5.0-20181004001-standard"
+        #var: "ESXi-6.5.0-20181004001-standard"
  #     failed_when: profile_res.stdout_lines | count != 1
  #     changed_when: false
 
@@ -103,7 +103,7 @@
       shell: >
         esxcli --formatter=keyvalue software profile update
         #-p {{ profile_res.stdout.split('\n') [0] }}
-        -p {{ var }}
+        -p {{ "ESXi-6.5.0-20181004001-standard" }}
         -d {{ temp_path }}/{{bundle }}
         --dry-run
       register: update_test_res
