@@ -100,6 +100,8 @@
     #  changed_when: false
 
     - name: dry-run software install
+    - debug:
+        var: "{{ profile_res.stdout.split('\n') [0] }}"
       shell: >
         esxcli --formatter=keyvalue software profile update
     #   -p {{ profile_res.stdout.split('\n')[0] }}
