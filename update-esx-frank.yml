@@ -94,14 +94,16 @@
       shell: "esxcli software sources profile list -d {{ temp_path }}/{{ bundle }} | awk 'NR>2 {print $1}'"
       register: profile_res
     - debug:
-        var: "{{ profile_res.stdout.split('\n') [0] }}"
+        #var: "{{ profile_res.stdout.split('\n') [0] }}"
+        var: "ESXi-6.5.0-20181004001-standard"
  #     failed_when: profile_res.stdout_lines | count != 1
  #     changed_when: false
 
     - name: dry-run software install
       shell: >
         esxcli --formatter=keyvalue software profile update
-        -p {{ profile_res.stdout.split('\n') [0] }}
+        #-p {{ profile_res.stdout.split('\n') [0] }}
+        -p {{ var }}
         -d {{ temp_path }}/{{bundle }}
         --dry-run
       register: update_test_res
