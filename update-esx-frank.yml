@@ -103,7 +103,7 @@
       shell: >
         esxcli --formatter=keyvalue software profile update
     #   -p {{ profile_res.stdout.split('\n') [0] }}
-        -p ESXi-6.5.0-20181004001-standard
+        -p "ESXi-6.5.0-20181004001-standard"
         -d {{ temp_path }}/{{bundle }}
         --dry-run
       register: update_test_res
