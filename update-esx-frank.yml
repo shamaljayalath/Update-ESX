@@ -26,11 +26,13 @@
 # patch and dry-run install w/o actual installation
 
 - hosts: all
+  
 
   # mostly from defaults (included later, but its ok)
   vars:
     bundle_url: "{{ src | default(default_http_src) }}/{{ bundle }}"
     temp_path:  "{{ '/vmfs/volumes/datastore1/' + temp_dir|default(default_temp_dir) }}"
+    default_profile: "frank"
 
   tasks:
 
@@ -103,7 +105,7 @@
       shell: >
         esxcli --formatter=keyvalue software profile update
     #   -p {{ profile_res.stdout.split('\n') [0] }}
-        -p "{{ frank }}"
+        -p {{  default_profile  }}
         -d {{ temp_path }}/{{bundle }}
         --dry-run
       register: update_test_res
