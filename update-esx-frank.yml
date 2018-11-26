@@ -104,9 +104,9 @@
     - name: dry-run software install
       shell: >
         esxcli --formatter=keyvalue software profile update
-          -p {{ default_profile }}
-          -d {{ temp_path }}/{{ bundle }}
-          --dry-run
+        -p {{ default_profile }}
+        -d {{ temp_path }}/{{ bundle }}
+        --dry-run
       register: update_test_res
       changed_when: >-
         not (update_test_res.stdout_lines[0].endswith('The following installers will be applied: []')
@@ -116,7 +116,9 @@
          
     - name: perform install if required
       shell: >
-        esxcli --formatter=keyvalue software profile update -p {{ default_profile }} -d {{ temp_path }}/{{ bundle }} 
+        esxcli --formatter=keyvalue software profile update 
+        -p {{ default_profile }} 
+        -d {{ temp_path }}/{{ bundle }} 
           
           
       register: update_res
