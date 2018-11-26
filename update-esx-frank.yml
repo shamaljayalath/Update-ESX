@@ -116,7 +116,7 @@
     - name: perform install if required
       shell: >
         esxcli --formatter=keyvalue software profile update
-        -p {{ profile_res.stdout }}
+        -p {{ default_profile }}
         -d {{ temp_path }}/{{bundle }}
       register: update_res
       changed_when: |
