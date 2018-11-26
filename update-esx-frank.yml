@@ -104,7 +104,7 @@
     - name: dry-run software install
       shell: >
         esxcli --formatter=keyvalue software profile update
-          -p {{ default_profile }}
+          -p "{{ default_profile }}"
           -d {{ temp_path }}/{{ bundle }}
           --dry-run
       register: update_test_res
