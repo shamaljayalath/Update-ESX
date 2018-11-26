@@ -113,11 +113,12 @@
          and update_test_res.stdout_lines[1].endswith('RebootRequired.boolean=false')
          and update_test_res.stdout_lines[2].endswith('VIBsInstalled.string[] = ')
          and update_test_res.stdout_lines[3].endswith('VIBsRemoved.string[] = '))
+         
     - name: perform install if required
       shell: >
         esxcli --formatter=keyvalue software profile update
-        -p {{ default_profile }}
-        -d {{ temp_path }}/{{ bundle }}
+          -p {{ default_profile }}
+          -d {{ temp_path }}/{{ bundle }}
       register: update_res
       changed_when: |
         not (update_res.stdout_lines[0].endswith('The following installers will be applied: []')
