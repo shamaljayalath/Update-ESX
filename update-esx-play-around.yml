@@ -25,7 +25,7 @@
 # check mode is not truly supported (yet?): mb it will be ok just to download
 # patch and dry-run install w/o actual installation
 
-- hosts: localhost
+- hosts: all
   
 
   # mostly from defaults (included later, but its ok)
