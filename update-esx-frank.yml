@@ -174,8 +174,8 @@
         host: "{{ ansible_fqdn }}"
         port: 22
         state: started
-        delay: 30
-        timeout: 300
+        delay: 60
+        timeout: 420
       when: will_reboot
 
     # before that SSH is accessible but requesting password
