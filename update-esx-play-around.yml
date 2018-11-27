@@ -31,7 +31,7 @@
   # mostly from defaults (included later, but its ok)
   vars:
     bundle_url: "{{ src | default(default_http_src) }}/{{ bundle }}"
-    temp_path:  "{{ '/vmfs/volumes/datastore1/' + temp_dir|default(default_temp_dir) }}"
+    temp_path:  "{{ '/vmfs/volumes/datastore2/' + temp_dir|default(default_temp_dir) }}"
     #default_profile: "frank"
     vcenter_server: "168.1.107.242"
     vcenter_user: "administrator@vsphere.local"
