@@ -50,12 +50,12 @@
         msg: "please specify at least -e bundle=<name>"
 
     # really optional; could be multi
-    - name: check that play targets exactly one esxi host
-      assert:
-        that:
-          - ansible_play_hosts|length == 1
-          - ansible_os_family == "VMkernel"
-        msg: "please target exactly one vmware host with this play"
+   # - name: check that play targets exactly one esxi host
+   #   assert:
+   #     that:
+   #      - ansible_play_hosts|length == 1
+   #       - ansible_os_family == "VMkernel"
+   #     msg: "please target exactly one vmware host with this play"
 
     - name: warn that remote kernel is already current
       debug:
