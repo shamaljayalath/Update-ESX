@@ -33,6 +33,11 @@
     bundle_url: "{{ src | default(default_http_src) }}/{{ bundle }}"
     temp_path:  "{{ '/vmfs/volumes/datastore1/' + temp_dir|default(default_temp_dir) }}"
     #default_profile: "frank"
+    vcenter_server: "168.1.107.242"
+    vcenter_user: "administrator@vsphere.local"
+    vcenter_pass: "RH[}3y5p"
+    
+    
 
   tasks:
 
@@ -69,6 +74,22 @@
       esxi_vm_info:
         get_power_state: true
       register: vm_info_res
+      
+    - name: Add ESXi {{ esxi_hostname }} to maintenance mode
+      vmware_maintenancemode:
+        validate_certs: False
+        hostname: "{{ vcenter_server }}"
+        username: "{{ vcenter_user }}"
+        password: "{{ vcenter_pass }}"
+        esxi_hostname: {{ ansible_play_hosts }}
+        state: present
+      register: host_result
+
+    - name: Assert that host {{ esxi_hostname }} is in maintenance mode
+      assert:
+        that:
+          - "host_result.changed"
+    
 
     - name: check if reboot is possible (no running VMs)
       set_fact:
