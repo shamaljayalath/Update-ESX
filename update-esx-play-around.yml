@@ -81,7 +81,7 @@
         hostname: "{{ vcenter_server }}"
         username: "{{ vcenter_user }}"
         password: "{{ vcenter_pass }}"
-        esxi_hostname: {{ ansible_play_hosts }}
+        esxi_hostname: "{{ ansible_play_hosts }}"
         state: present
       register: host_result
 
