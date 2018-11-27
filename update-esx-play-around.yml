@@ -212,4 +212,4 @@
     - name: clean up patch bundle from temp location
       file:
         dest: "{{ temp_path }}/{{ bundle }}"
-state: absent
+        state: absent
