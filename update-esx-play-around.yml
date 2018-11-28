@@ -75,7 +75,7 @@
         get_power_state: true
       register: vm_info_res
       
-     - name: Add ESXi {{ ansible_play_hosts }} to maintenance mode
+    - name: Add ESXi {{ ansible_play_hosts }} to maintenance mode
       delegate_to: localhost
       vmware_maintenancemode:
         validate_certs: False
