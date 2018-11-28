@@ -73,20 +73,17 @@
     - name: get list of running VMs
       esxi_vm_info:
         get_power_state: true
-      register: vm_info_res
-      
-   
-    
+      register: vm_info_res   
 
-  #  - name: check if reboot is possible (no running VMs)
-  #    set_fact:
-  #      reboot_possible: "{{ vm_info_res.power_by_vm | select | list | count == 0 }}"
+    - name: check if reboot is possible (no running VMs)
+      set_fact:
+        reboot_possible: "{{ vm_info_res.power_by_vm | select | list | count == 0 }}"
 
-  #  - name: check that host is either free of VMs or reboot is forced
-  #    assert:
-  #      that:
-  #        - reboot_possible or force_reboot
-  #      msg: "please either stop/migrate running VMs or use -e 'force_reboot=true'"
+    - name: check that host is either free of VMs or reboot is forced
+      assert:
+        that:
+          - reboot_possible or force_reboot
+        msg: "please either stop/migrate running VMs or use -e 'force_reboot=true'"
 
     - name: make sure that temp path exists
       stat:
