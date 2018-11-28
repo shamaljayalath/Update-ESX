@@ -16,7 +16,7 @@
     state: present
     register: host_result
 
- - name: Assert that host {{ ansible_play_hosts }} is in maintenance mode
-   assert:
-     that:
-       - "host_result.changed"
+- name: Assert that host {{ ansible_play_hosts }} is in maintenance mode
+  assert:
+    that:
+      - "host_result.changed"
