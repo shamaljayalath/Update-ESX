@@ -216,3 +216,19 @@
       file:
         dest: "{{ temp_path }}/{{ bundle }}"
         state: absent
+        
+    - name: Exit ESXi "{{ ansible_play_hosts }}" from maintenance mode
+      delegate_to: localhost
+      vmware_maintenancemode:
+        validate_certs: no
+        hostname: "{{ vcenter_server }}"
+        username: "{{ vcenter_user }}"
+        password: "{{ vcenter_pass }}"
+        esxi_hostname: "10.118.17.41"
+        state: absent
+      register: host_result
+
+    - name: Assert that host {{ ansible_play_hosts }} is in maintenance mode
+      assert:
+        that:
+          - "host_result.changed"
