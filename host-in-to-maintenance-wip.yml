@@ -7,7 +7,7 @@
     
   tasks:
     - name: Add ESXi {{ ansible_play_hosts }} to maintenance mode
-    #  delegate_to: localhost
+      delegate_to: localhost
       vmware_maintenancemode:
         validate_certs: False
         hostname: "{{ vcenter_server }}"
