@@ -160,9 +160,9 @@
       set_fact:
         reboot_required: "{{ update_test_res.stdout_lines[1].endswith('RebootRequired.boolean=true') }}"
 
-    - name: determine if we will reboot host
-      set_fact:
-        will_reboot: "{{ reboot_required and (force_reboot or reboot_possible) }}"
+ #   - name: determine if we will reboot host
+ #     set_fact:
+ #       will_reboot: "{{ reboot_required and (force_reboot or reboot_possible) }}"
 
     - name: print out reboot plans
       debug:
