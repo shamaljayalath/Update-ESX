@@ -205,7 +205,7 @@
     # before that SSH is accessible but requesting password
     - name: give the host some time to recover
       pause:
-        seconds: 30
+        seconds: 60
       when: will_reboot
 
     - name: reset ssh connection to re-login after host is booted
@@ -225,6 +225,7 @@
         username: "{{ vcenter_user }}"
         password: "{{ vcenter_pass }}"
         esxi_hostname: "10.118.17.41"
+        timeout: 20
         state: absent
       register: host_result
 
