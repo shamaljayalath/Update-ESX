@@ -96,11 +96,11 @@
         that:
           - "host_result.changed"
 
-    - name: check that host is either free of VMs or reboot is forced
-      assert:
-        that:
-          - reboot_possible or force_reboot
-        msg: "please either stop/migrate running VMs or use -e 'force_reboot=true'"
+  #  - name: check that host is either free of VMs or reboot is forced
+  #    assert:
+  #      that:
+  #        - reboot_possible or force_reboot
+  #      msg: "please either stop/migrate running VMs or use -e 'force_reboot=true'"
 
     - name: make sure that temp path exists
       stat:
