@@ -6,7 +6,7 @@
     vcenter_pass: "RH[}3y5p"
     
   tasks:
-    - name: Exit ESXi "{{ esxi_hostname }}" from maintenance mode
+    - name: Exit ESXi "{{ ansible_play_hosts }}" from maintenance mode
       vmware_maintenancemode:
         validate_certs: no
         hostname: "{{ vcenter_server }}"
