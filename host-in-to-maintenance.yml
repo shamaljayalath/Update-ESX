@@ -1,3 +1,10 @@
+---
+- hosts: localhost
+  vars:
+    vcenter_server: "168.1.107.242"
+    vcenter_user: "administrator@vsphere.local"
+    vcenter_pass: "RH[}3y5p"
+
 - name: Add ESXi {{ ansible_play_hosts }} to maintenance mode
       vmware_maintenancemode:
         validate_certs: False
