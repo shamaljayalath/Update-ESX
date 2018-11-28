@@ -12,7 +12,7 @@
         hostname: "{{ vcenter_server }}"
         username: "{{ vcenter_user }}"
         password: "{{ vcenter_pass }}"
-        esxi_hostname: ""10.118.17.41""
+        esxi_hostname: "10.118.17.41"
         state: absent
       register: host_result
 
