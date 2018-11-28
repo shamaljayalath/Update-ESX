@@ -1,0 +1,24 @@
+---
+- hosts: all
+  vars:
+    vcenter_server: "168.1.107.242"
+    vcenter_user: "administrator@vsphere.local"
+    vcenter_pass: "RH[}3y5p"
+    
+  tasks:
+    - name: Add ESXi {{ ansible_play_hosts }} to maintenance mode
+      delegate_to: localhost
+      vmware_maintenancemode:
+        validate_certs: False
+        hostname: "{{ vcenter_server }}"
+        username: "{{ vcenter_user }}"
+        password: "{{ vcenter_pass }}"
+  #     esxi_hostname: "{{ ansible_play_hosts }}"
+        esxi_hostname: "10.118.17.41"
+        state: present
+      register: host_result
+
+    - name: Assert that host {{ ansible_play_hosts }} is in maintenance mode
+      assert:
+        that:
+- "host_result.changed"
