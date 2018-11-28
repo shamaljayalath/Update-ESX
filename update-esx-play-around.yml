@@ -70,16 +70,12 @@
         - build is defined
         - ansible_distribution_version.startswith("#1 SMP Release build-" + build )
 
-  #  - name: get list of running VMs
-  #    esxi_vm_info:
-  #      get_power_state: true
-  #    register: vm_info_res   
-
-  #  - name: check if reboot is possible (no running VMs)
-  #    set_fact:
-  #      reboot_possible: "{{ vm_info_res.power_by_vm | select | list | count == 0 }}"
-  
-    - name: Add ESXi {{ ansible_play_hosts }} to maintenance mode
+    - name: get list of running VMs
+      esxi_vm_info:
+        get_power_state: true
+      register: vm_info_res
+      
+     - name: Add ESXi {{ ansible_play_hosts }} to maintenance mode
       delegate_to: localhost
       vmware_maintenancemode:
         validate_certs: False
@@ -96,11 +92,17 @@
         that:
           - "host_result.changed"
 
-  #  - name: check that host is either free of VMs or reboot is forced
-  #    assert:
-  #      that:
-  #        - reboot_possible or force_reboot
-  #      msg: "please either stop/migrate running VMs or use -e 'force_reboot=true'"
+    - name: check if reboot is possible (no running VMs)
+      set_fact:
+        reboot_possible: "{{ vm_info_res.power_by_vm | select | list | count == 0 }}"
+  
+    
+
+    - name: check that host is either free of VMs or reboot is forced
+      assert:
+        that:
+          - reboot_possible or force_reboot
+        msg: "please either stop/migrate running VMs or use -e 'force_reboot=true'"
 
     - name: make sure that temp path exists
       stat:
@@ -160,9 +162,9 @@
       set_fact:
         reboot_required: "{{ update_test_res.stdout_lines[1].endswith('RebootRequired.boolean=true') }}"
 
- #   - name: determine if we will reboot host
- #     set_fact:
- #       will_reboot: "{{ reboot_required and (force_reboot or reboot_possible) }}"
+    - name: determine if we will reboot host
+      set_fact:
+        will_reboot: "{{ reboot_required and (force_reboot or reboot_possible) }}"
 
     - name: print out reboot plans
       debug:
