@@ -15,7 +15,7 @@
     
     - debug:
         msg: "{{ add_slash }}"
-        msg: "{{ my_variable }}"
+      #  msg: "{{ my_variable }}"
       
   
     - name: Create temp directory
