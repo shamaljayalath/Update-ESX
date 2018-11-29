@@ -31,11 +31,12 @@
   # mostly from defaults (included later, but its ok)
   vars:
     bundle_url: "{{ src | default(default_http_src) }}/{{ bundle }}"
-    temp_path:  "{{ '/vmfs/volumes/datastore2/' + temp_dir|default(default_temp_dir) }}"
+  #  temp_path:  "{{ '/vmfs/volumes/datastore2/' + temp_dir|default(default_temp_dir) }}"
     #default_profile: "frank"
     vcenter_server: "168.1.107.242"
     vcenter_user: "administrator@vsphere.local"
     vcenter_pass: "RH[}3y5p"
+    add_slash: "/"
     
     
 
@@ -103,6 +104,33 @@
         that:
           - reboot_possible or force_reboot
         msg: "please either stop/migrate running VMs or use -e 'force_reboot=true'"
+          
+    - name: list storage file systems available on ESXi host and grep only the local datastorage
+      shell: "esxcli storage filesystem list | grep datastore"
+      register: out_pro
+      
+    # Get the local datastore mount point
+    # Add slash at the end to complete the directory path
+    # This is the full path to the directory that gets created underneath
+    
+    - set_fact: my_variable="{{ out_pro.stdout.split(' ')[0] }}" 
+    - set_fact: my_varwithslash="{{ my_variable }}{{ add_slash }}"
+    - set_fact: temp_path="{{ my_varwithslash + temp_dir|default(default_temp_dir) }}"
+     
+    
+    #- debug:
+      #  msg: "{{ my_variable }}{{ add_slash }}"
+      #  msg: "{{ temp_path }}"
+      
+  
+    - name: Create temp directory on the local datastore to download esx update
+      file:
+      #  path: "{{ my_varwithslash + temp_dir|default(default_temp_dir) }}"
+        path: "{{ temp_path }}"
+        state: directory
+        mode: 0755
+          
+     
 
     - name: make sure that temp path exists
       stat:
