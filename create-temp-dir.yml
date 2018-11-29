@@ -10,6 +10,7 @@
     
   - debug:
       msg: "{{ out_pro.stdout.split(' ')[0] }}"
+      msg: "{{ out_proo }}"
   
   - name: Create temp directory
     file:
