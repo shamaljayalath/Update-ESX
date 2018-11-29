@@ -1,10 +1,10 @@
 ---
 - hosts: all
- # vars:
- #   variable: "None"
+  vars:
+    variable: "test"
     
   tasks: 
-   # - include_vars: "update_esxi_defaults.yaml"
+    - include_vars: "update_esxi_defaults.yaml"
   
     - name: list profiles in bundle
       shell: "esxcli storage filesystem list | grep datastore"
