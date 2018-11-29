@@ -3,14 +3,11 @@
   tasks:
   - include_vars: "update_esxi_defaults.yaml"
   
-  - name: Ansible find Datastore path
-    find:
-      paths: /vmfs/volumes
-      file_type: directory
-      contains: "datastore"
-    register: directory_path
+  - name: list profiles in bundle
+      shell: "esxcli storage filesystem list | grep datastore"
+      register: out
   - debug:
-      msg: "{{ directory_path }}"
+      path: "{{ out.stdout.split(' ') [0] }}"
   
     
  # - name: Create temp directory
