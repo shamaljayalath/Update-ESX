@@ -5,9 +5,10 @@
   
   - name: list profiles in bundle
     shell: "esxcli storage filesystem list | grep datastore"
-    register: out
+    register: out_pro
+    
   - debug:
-      path: "{{ out.stdout.split(' ') [0] }}"
+      location: "{{ out_pro.stdout.split(' ')[0] }}"
   
     
  # - name: Create temp directory
