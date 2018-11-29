@@ -6,7 +6,8 @@
   - name: Ansible find Datastore path
     find:
       paths: /vmfs/volumes
-      patterns: "datastore*"
+      file_type: directory
+      patterns: "*datastore*"
       register: directory_path
   - debug:
       msg: "{{ directory_path }}"
