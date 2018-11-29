@@ -9,11 +9,13 @@
     - name: list storage file systems available on ESXi host and grep only the local datastorage
       shell: "esxcli storage filesystem list | grep datastore"
       register: out_pro
-    # Get the local datastore mount point  
-    - set_fact: my_variable="{{ out_pro.stdout.split(' ')[0] }}" 
+      
+    # Get the local datastore mount point
     # Add slash at the end to complete the directory path
+    # This is the full path to the directory that gets created underneath
+    
+    - set_fact: my_variable="{{ out_pro.stdout.split(' ')[0] }}" 
     - set_fact: my_varwithslash="{{ my_variable }}{{ add_slash }}"
-    # This is the full path to the directory that gets created underneath 
     - set_fact: temp_path="{{ my_varwithslash + temp_dir|default(default_temp_dir) }}"
      
     
