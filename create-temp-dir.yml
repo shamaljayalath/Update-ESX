@@ -10,7 +10,7 @@
       shell: "esxcli storage filesystem list | grep datastore"
       register: out_pro
       
-    - set_fact: my_variable: {{ out_pro.stdout.split(' ')[0] }}
+    - set_fact: my_variable={{ out_pro.stdout.split(' ')[0] }}
     
     - debug:
         msg: "{{ out_pro.stdout.split(' ')[0] }}"
