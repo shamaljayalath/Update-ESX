@@ -17,7 +17,7 @@
       
   
     - name: Create temp directory
-        file:
+      file:
         path: "{{ my_variable + temp_dir|default(default_temp_dir) }}"
         state: directory
         mode: 0755
