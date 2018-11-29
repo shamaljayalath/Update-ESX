@@ -14,7 +14,7 @@
      
     
     - debug:
-        msg: "{{ out_pro.stdout.split(' ')[0] }}"
+        msg: "{{ my_variable }}"
       
   
     - name: Create temp directory
