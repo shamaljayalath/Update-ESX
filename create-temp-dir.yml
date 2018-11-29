@@ -8,7 +8,7 @@
       paths: /vmfs/volumes
       patterns: "datastore*"
       register: directory_path
-   -debug:
+  - debug:
       msg: "{{ directory_path }}"
   
     
