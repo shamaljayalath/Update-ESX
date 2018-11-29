@@ -14,7 +14,7 @@
      
     
     - debug:
-        msg: "{{ add_slash }}"
+        msg: "{{ my_variable }}{{ add_slash }}"
       #  msg: "{{ my_variable }}"
       
   
