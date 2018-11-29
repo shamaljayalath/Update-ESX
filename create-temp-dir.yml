@@ -8,7 +8,7 @@
     register: out_pro
     
   - debug:
-      location: "{{ out_pro.stdout.split(' ')[0] }}"
+      msg: "{{ out_pro.stdout.split(' ')[0] }}"
   
     
  # - name: Create temp directory
