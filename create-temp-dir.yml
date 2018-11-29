@@ -1,7 +1,7 @@
 ---
 - hosts: all
- # vars:
- #   my_variable: "test"
+  vars:
+    add_slash: "/"
     
   tasks: 
     - include_vars: "update_esxi_defaults.yaml"
@@ -10,7 +10,8 @@
       shell: "esxcli storage filesystem list | grep datastore"
       register: out_pro
       
-    - set_fact: my_variable={{ out_pro.stdout.split(' ')[0] }} + "/"
+    - set_fact: my_variable=({{ out_pro.stdout.split(' ')[0] }} + "/")
+     
     
     - debug:
         msg: "{{ out_pro.stdout.split(' ')[0] }}"
