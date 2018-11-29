@@ -6,13 +6,14 @@
   - name: list profiles in bundle
     shell: "esxcli storage filesystem list | grep datastore"
     register: out_pro
+    out_proo: "{{ out_pro.stdout.split(' ')[0] }}"
     
   - debug:
       msg: "{{ out_pro.stdout.split(' ')[0] }}"
   
   - name: Create temp directory
     file:
-      path: "{{ "{{ out_pro.stdout.split(' ')[0] }}" + temp_dir|default(default_temp_dir) }}"
+      path: "{{ "out_proo" + temp_dir|default(default_temp_dir) }}"
       state: directory
       mode: 0755
       
