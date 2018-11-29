@@ -6,7 +6,7 @@
   tasks: 
     - include_vars: "update_esxi_defaults.yaml"
   
-    - name: list profiles in bundle
+    - name: list storahe file systems available on ESXi host and grep only the local datastorage
       shell: "esxcli storage filesystem list | grep datastore"
       register: out_pro
       
@@ -19,7 +19,7 @@
         msg: "{{ my_varwithslash }}"
       
   
-    - name: Create temp directory
+    - name: Create temp directory on the local datastore to download esx update
       file:
         path: "{{ my_varwithslash + temp_dir|default(default_temp_dir) }}"
         state: directory
