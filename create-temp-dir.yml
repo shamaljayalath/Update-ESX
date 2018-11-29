@@ -1,7 +1,7 @@
 ---
 - hosts: all
-  vars:
-    my_variable: "test"
+ # vars:
+ #   my_variable: "test"
     
   tasks: 
     - include_vars: "update_esxi_defaults.yaml"
