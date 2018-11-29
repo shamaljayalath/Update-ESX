@@ -13,7 +13,7 @@
   
   - name: Create temp directory
     file:
-      path: "{{ test + temp_dir|default(default_temp_dir) }}"
+      path: "{{ ("{{ out_pro.stdout.split(' ')[0] }}") + temp_dir|default(default_temp_dir) }}"
       state: directory
       mode: 0755
       
