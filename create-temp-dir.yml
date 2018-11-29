@@ -1,12 +1,21 @@
 ---
 - hosts: all
   tasks:
-    - include_vars: "update_esxi_defaults.yaml"
+  - include_vars: "update_esxi_defaults.yaml"
+  
+  - name: Ansible find Datastore path
+    find:
+      paths: /vmfs/volumes
+      patterns: "datastore*"
+      register: directory_path
+   -debug:
+      msg: "{{ directory_path }}"
+  
     
-    - name: Create temp directory
-      file:
-        path: "{{ '/vmfs/volumes/datastore*/' + temp_dir|default(default_temp_dir) }}"
-        state: directory
-        mode: 0755
+ # - name: Create temp directory
+ #     file:
+ #       path: "{{ '/vmfs/volumes/datastore*/' + temp_dir|default(default_temp_dir) }}"
+ #       state: directory
+ #       mode: 0755
       
 
