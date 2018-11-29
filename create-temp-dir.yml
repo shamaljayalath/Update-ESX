@@ -11,11 +11,12 @@
       register: out_pro
       
     - set_fact: my_variable="{{ out_pro.stdout.split(' ')[0] }}" + "{{ add_slash }}"
+    - set_fact: my_varwithslash="{{ my_variable }}{{ add_slash }}"
      
     
     - debug:
-        msg: "{{ my_variable }}{{ add_slash }}"
-      #  msg: "{{ my_variable }}"
+      #  msg: "{{ my_variable }}{{ add_slash }}"
+        msg: "{{ my_varwithslash }}"
       
   
     - name: Create temp directory
