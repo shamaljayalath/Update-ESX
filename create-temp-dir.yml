@@ -11,10 +11,10 @@
       msg: "{{ out_pro.stdout.split(' ')[0] }}"
   
     
- # - name: Create temp directory
- #     file:
- #       path: "{{ '/vmfs/volumes/datastore*/' + temp_dir|default(default_temp_dir) }}"
- #       state: directory
- #       mode: 0755
+ - name: Create temp directory
+     file:
+       path: "{{ "{{ out_pro.stdout.split(' ')[0] }}" + temp_dir|default(default_temp_dir) }}"
+       state: directory
+       mode: 0755
       
 
