@@ -1,0 +1,10 @@
+---
+- hosts: all
+  tasks:
+  - name: Create temp directory
+    file:
+      path: "{{ '/vmfs/volumes/datastore*/' + temp_dir|default(default_temp_dir) }}"
+      state: directory
+      mode: 0755
+      
+
